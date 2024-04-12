@@ -1,0 +1,46 @@
+<%- include("partials/head.ejs") %>
+
+    <body>
+        <%- include("partials/navbar.ejs") %>
+            <div class="container-fluid">
+                <% if (subreddit.name) {%>
+                    <header>
+                        <p><i>you Browsed for <%= subreddit.search.toUpperCase()%> subreddit</i></p>
+
+                        <h1> subreddit name: <%= subreddit.name %>
+                        </h1>
+                        <h2>subscribers: <%=subreddit.subscribers %>
+                        </h2>
+                        <p>description: <%= subreddit.description%>
+                        </p>
+                        <hr>
+                    </header>
+                    <section>
+                        <%for (let post of subreddit.posts){%>
+                            <div class="card post">
+                                <%if (post.img){%>
+                                    <img src="<%=post.img %>" alt="">
+                                    <%}%>
+                                        <%if (post.title){%>
+                                            <h2>
+                                                <%= post.title %>
+                                            </h2>
+                                            <%}%>
+                                                <%if (post.author){%>
+                                                    <h3>
+                                                        -<%= post.author %>
+                                                    </h3>
+                                                    <%}%>
+                            </div>
+                            <%}%>
+                    </section>
+                    <% }else{ %>
+                        <p><i>no search results for <%= subreddit.search %></i>
+                        </p>
+                        <% } %>
+
+            </div>
+            <%- include("partials/footer.ejs") %>
+    </body>
+
+    </html>
